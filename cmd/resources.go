@@ -39,7 +39,7 @@ var (
 			}
 
 			prompt := promptui.Select{
-				Label:     "Services",
+				Label:     "SERVICE NAME",
 				Items:     serviceResults,
 				Templates: templates,
 				Size:      20,

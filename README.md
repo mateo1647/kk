@@ -20,3 +20,8 @@ you can specify a "grep" like command to filter by service name
     1. this would print a list of all service names containing "argo" across all namespaces
 
 hitting "enter" on the service will then output the selection with "-o yaml" option
+
+
+Inspiration / credit:
+- ckube
+- kubectl-grep
