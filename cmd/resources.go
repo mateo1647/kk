@@ -45,13 +45,15 @@ var (
 				Size:      20,
 			}
 
-			_, _, err := prompt.Run()
+			i, _, err := prompt.Run()
 
 			if err != nil {
-				fmt.Printf("Prompt failed %v\n", err)
 				return
 			}
-
+			output := util.RawK8sOutput(namespace, context, labels, "get", "service", serviceResults[i].Service.Name, "-oyaml")
+			for _, line := range output {
+				fmt.Println(line)
+			}
 		},
 	}
 )

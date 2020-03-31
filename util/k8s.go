@@ -2,6 +2,7 @@ package util
 
 import (
 	"fmt"
+	"os/exec"
 	"strings"
 	"time"
 
@@ -181,4 +182,36 @@ func KeysString(m map[string]string) string {
 		keys = append(keys, fmt.Sprintf("%s=%s", k, v))
 	}
 	return strings.Join(keys, ",")
+}
+
+func RunCommand(name string, args ...string) []string {
+	//fmt.Printf("%v %v\n", name, args)
+	cmd := exec.Command(name, args...)
+
+	cmdOut, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("error running command: %v %v\n", name, args)
+	}
+	output := strings.Split(string(cmdOut), "\n")
+
+	return output
+}
+
+func RawK8sOutput(namespace string, context string, labels string, args ...string) []string {
+	cmdArgs := K8sCommandArgs(args, namespace, context, labels)
+	output := RunCommand("kubectl", cmdArgs...)
+	return output
+}
+
+func K8sCommandArgs(args []string, namespace string, context string, labels string) []string {
+	if namespace != "" {
+		args = append(args, fmt.Sprintf("--namespace=%v", namespace))
+	}
+	if context != "" {
+		args = append(args, fmt.Sprintf("--context=%v", context))
+	}
+	if labels != "" {
+		args = append(args, fmt.Sprintf("--selector=%v", labels))
+	}
+	return args
 }
