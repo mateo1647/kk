@@ -3,20 +3,20 @@ try and make kubectl more betterer
 
 ## Setup
 
-git clone https://github.com/mateo1647/kk
-cd kk
-go build
-./kk (command)
+1. git clone https://github.com/mateo1647/kk
+2. cd kk
+3. go build
+4. ./kk (command)
 
 kk
-    service / svc
-        prints service list for current namespace
-    service -A
-        prints service list for all namespaces
+1. service / svc
+    1. prints service list for current namespace
+2. service -A
+    1. prints service list for all namespaces
 
 you can specify a "grep" like command to filter by service name
 
-ex: kk svc argo -A
-    this would print a list of all service names containing "argo" across all namespaces
+1. kk svc argo -A
+    1. this would print a list of all service names containing "argo" across all namespaces
 
 hitting "enter" on the service will then output the selection with "-o yaml" option
