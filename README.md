@@ -3,7 +3,7 @@ try and make kubectl more betterer
 
 ## Setup
 
-1. git clone https://github.com/mateo1647/kk
+1. git clone https://github.com/matoszz/kk
 2. cd kk
 3. go build
 4. ./kk (command)
